@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Registration Form</title>
+    <script>
+        function validate() {
+            var userid = document.getElementById('uid').value;
+            var psswd = document.getElementById('psswd').value;
+            var name = document.getElementById('name').value;
+            var addr = document.getElementById('addr').value;
+            var zip = document.getElementById('zip').value;
+            var country = document.getElementById('country');
+            var select = country.options[country.selectedIndex].value;
+            var email = document.getElementById('email').value;
+            var genders = document.getElementsByName("gender");
+
+            var div_userid = document.getElementById("uerr");
+            var div_psswd = document.getElementById("perr");
+            var div_name = document.getElementById("nerr");
+            var div_addr = document.getElementById("aerr");
+            var div_zip = document.getElementById("zerr");
+            var div_country = document.getElementById("cerr");
+            var div_email = document.getElementById("Eerr");
+            var div_gender = document.getElementById("gerr");
+
+
+           
+
+            // userid validation
+            if (userid == null || userid == "") {
+                div_userid.innerHTML = "Enter your userid";
+                return false;
+            }
+            else if (userid.length < 5 || userid.length > 8) {
+                div_userid.innerHTML = "Enter minimum of 5 and maximum of 8 character";
+                document.getElementById("psswd").focus();
+                return false;
+            }
+            else {
+                div_userid.innerHTML = " ";
+            }
+
+            // password validation
+            if (psswd == null || psswd == "") {
+                div_psswd.innerHTML = "Enter password";
+                return false;
+            }
+            else if (psswd.length < 7 || psswd.length > 12) {
+                div_psswd.innerHTML = "Enter minimum of 7 and maximum of 12 character";
+                document.getElementById("psswd").focus();
+                return false;
+            }
+            else {
+                div_psswd.innerHTML = "";
+            }
+
+            // username validation
+            if (name == null || name == "") {
+                div_name.innerHTML = "Enter your name";
+                return false;
+            }
+            if (!name.match(/^[a-zA-Z\s]+$/)) {
+                div_name.innerHTML = "Alphabets Only";
+                document.getElementById("name").focus();
+                return false;
+            }
+            else {
+                div_name.innerHTML = "";
+            }
+
+            // address validation
+            if (addr == null || addr == "") {
+                div_addr.innerHTML = "Enter your address";
+                return false;
+            }
+            if (!addr.match(/^[0-9a-zA-Z\s]+$/)) {
+                div_addr.innerHTML = "Alphahumeric Characters only";
+                document.getElementById("addr").focus();
+                return false;
+            }
+            else {
+                div_addr.innerHTML = "";
+            }
+
+            //country validation
+            if (select == 0) {
+                div_country.innerHTML = "Select your country";
+                return false;
+            }
+            else {
+                div_country.innerHTML = "";
+            }
+
+            // zip validation
+            if (zip == null || zip == "") {
+                div_zip.innerHTML = "Enter the Zip Code";
+                return false;
+            }
+            if (!zip.match(/^[0-9a-zA-Z\s]+$/)) {
+                div_zip.innerHTML = "Alphahumeric Characters only";
+                document.getElementById("zip").focus();
+                return false;
+            }
+            else {
+                div_zip.innerHTML = "";
+            }
+
+            // email validation
+            if (email == null || email == "") {
+                div_email.innerHTML = "Enter Email-ID";
+                return false;
+            }
+            if (!email.match(/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/)) {
+                div_email.innerHTML = "Enter a valid Email address";
+                document.getElementById("email").focus();
+                return false;
+            }
+            else {
+                div_email.innerHTML = "";
+            }
+
+            // gender validation
+
+            if (genders[0].checked == true || genders[1].checked == true) {
+                div_gender.innerHTML = "";
+                return true;
+            }
+            else {
+                div_gender.innerHTML = "Select your gender";
+                return false;
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <center>
+        <h1>Registration Form</h1>
+        <form>
+            <table>
+                <tr>
+                    <td>User ID:</td>
+                    <td><input type="text" name="uid" id="uid" /><div class="error" id="uerr"></div></td>
+                </tr>
+
+                <tr>
+                    <td><label for="name">Password: </label></td>
+                    <td><input type="password" id="psswd" name="psswd" /><div class="error" id="perr"></div></td>
+                </tr>
+
+                <tr>
+                    <td><label for="name">Name: </label></td>
+                    <td><input type="text" id="name" name="name" size="40" /><div class="error" id="nerr"></div></td>
+                </tr>
+
+                <tr>
+                    <td><label for="name">Address: </label></td>
+                    <td><input type="text" id="addr" name="addr" size="40" /><div class="error" id="aerr"></div></td>
+                </tr>
+
+                <tr>
+                    <td><label for="country">Country: </label></td>
+                    <td>
+                        <select name="country" id="country">
+                            <option value="0">(please select a country)</option>
+                            <option value="India">India</option>
+                            <option value="USA">USA</option>
+                            <option value="England">England</option>
+                            <option value="Germany">Germany</option>
+                        </select>
+                     <div class="error" id="cerr"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="zip">ZIP Code: </label></td>
+                    <td>
+                        <input type="text" id="zip" name="zip" />
+                        <div class="error" id="zerr"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="email">Email: </label></td>
+                    <td>
+                        <input type="text" name="email" id="email" size="40" />
+                        <div class="error" id="Eerr"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="gender">Gender: </label></td>
+                    <td>
+                        <input type="radio" id="male" name="gender">
+                        <label for="male">Male</label>
+                        <input type="radio" id="female" name="gender">
+                        <label for="Female">Female</label><br>
+                        <div class="error" id="gerr"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label for="language">Language: </label></td>
+                    <td>
+                        <input type="checkbox" id="English" name="language">
+                        <label for="lang">English</label>
+                        <input type="checkbox" id="Non_English" name="language">
+                        <label for="lang">Non English</label><br>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="vertical-align:top"><label for="About">About: </label></td>
+                    <td>
+                        <textarea id="about" name="about" rows="9" cols="42"></textarea>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td></td>
+                    <td><button type="submit" onclick="return validate()">Submit</button></td>
+                </tr>
+            </table>
+        </form>
+    </center>
+</body>
+</html>
